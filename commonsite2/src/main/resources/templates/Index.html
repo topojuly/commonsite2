@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"></meta>
+<script src="static/node_modules/vue/dist/vue.js"></script>
+<script src="static/node_modules/element-ui/lib/index.js"></script>
+<style>
+	@import url("static/node_modules/element-ui/lib/theme-chalk/index.css");
+</style>
+<link rel="stylesheet" type="text/css" href="static/css/index.css"></link>
+</head>
+<body style="background:url('static/images/taishan.jpg') no-repeat center;background-size:100%">
+<div style="height:100px;text-align:center"><h2>欢迎使用 Commonsite2</h2></div>
+<div id="app" style="width:600px;height:400px;margin: 0 auto;">
+<el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+  <el-form-item label="用户名">
+    <el-input v-model="name"></el-input>
+  </el-form-item>
+  <el-form-item label="密码">
+    <el-input v-model="password"></el-input>
+  </el-form-item>
+  <el-form-item>
+    <el-switch width="60" v-model="isRemember" active-text="记住用户名" inactive-text="不记用户名"></el-switch>
+  </el-form-item>
+  <el-form-item>
+    <el-button type="primary" v-on:click="login">登    陆</el-button>
+    <el-button v-on:click="open">没有注册， 点击这里！</el-button>
+  </el-form-item>
+</el-form>
+	<el-carousel :interval="2000" type="card" height="6px">
+		<el-carousel-item v-for="item in 6" :key="item">
+		  <h5>{{ item }}</h5>
+		</el-carousel-item>
+	</el-carousel>
+</div>
+<script>
+var Main = {
+  data() {
+      return {
+	    name: "",
+        password: "",
+        isRemember: true
+      }
+    },
+    methods: {
+	  open() {
+        this.$notify({
+          title: '系统消息',
+          message: '功能实现中......',
+          type: 'success'
+        });
+      },
+
+      login() {
+    	window.location = "Main";
+      }
+    }
+  }
+var Ctor = Vue.extend(Main)
+new Ctor().$mount('#app')
+</script>
+</body>
+</html>
